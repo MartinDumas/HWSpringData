@@ -34,11 +34,11 @@ public class NoteService {
     }
 
     @SneakyThrows
-    public void update(Note note) {
+    public Note update(Note note) {
         if (!noteRepository.existsById(note.getId())) {
             throw new NotFoundNoteException("Note with id " + note.getId() + " not found");
         }
-        noteRepository.save(note);
+         return  noteRepository.save(note);
 
     }
 

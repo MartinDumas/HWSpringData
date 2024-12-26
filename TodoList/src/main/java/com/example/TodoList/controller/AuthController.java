@@ -1,27 +1,32 @@
 package com.example.TodoList.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
+@RequestMapping("/api/auth")
 public class AuthController {
-    @GetMapping("/")
-    public String enter() {
-        return "redirect:login";
+
+    @GetMapping("/redirect")
+    public ResponseEntity<String> enter() {
+        return ResponseEntity.ok("Redirect to login");
     }
 
     @GetMapping("/login")
-    public String login() {
-        return "login";
+    public ResponseEntity<String> login() {
+        return ResponseEntity.ok("Login page");
     }
 
-    @GetMapping("/login?error=true")
-    public String loginError() {
-        return "login";
+    @GetMapping("/login/error")
+    public ResponseEntity<String> loginError() {
+        return ResponseEntity.badRequest().body("Login error");
     }
 
-    @GetMapping("/login?logout=true")
-    public String logout() {
-        return "login";
+    @GetMapping("/logout")
+    public ResponseEntity<String> logout() {
+        return ResponseEntity.ok("Logged out successfully");
     }
 }
